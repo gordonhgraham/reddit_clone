@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-App="redditClone">
+    <head>
+        <meta charset="utf-8">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <title>Reddit Clone</title>
+    </head>
+    <body>
+      <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper black">
+                <a href="#" class="brand-logo">Reddit Clone</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="">Submit Post</a></li>
+                    <li>
+                      <form>
+                        <div class="input-field">
+                          <input id="search" type="search" required>
+                          <label for="search"><i class="material-icons">search</i></label>
+                          <i class="material-icons">close</i>
+                        </div>
+                      </form>
+                    </li>
+                    <li><a href="#">Order By</a></li>
+                </ul>
+            </div>
+        </nav>
+      </div>
+      <div class="container">
+        <form action="" method="" name="newPost" ng-model="newPost">
+            <label for="title">Title:</label>
+            <input type="text" name="title" ng-model="title" required>
+            <label for="author">Author:</label>
+            <input type="text" name="author" ng-model="author" required>
+            <label for="img">Image:</label>
+            <input type="text" name="img" ng-model="img" required>
+            <label for="description">Description:</label>
+            <textarea name="description" ng-model="description" required></textarea>
+        </form>
+      </div>
+      <div class="">
+        {{title}}
+        {{author}}
+        {{img}}
+        {{description}}
+      </div>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
