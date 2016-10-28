@@ -4,48 +4,84 @@
         <meta charset="utf-8">
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <script src="https://use.fontawesome.com/7f5c5a8c99.js"></script>
         <title>Reddit Clone</title>
     </head>
     <body>
-      <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper black">
-                <a href="#" class="brand-logo">Reddit Clone</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="">Submit Post</a></li>
-                    <li>
-                      <form>
-                        <div class="input-field">
-                          <input id="search" type="search" required>
-                          <label for="search"><i class="material-icons">search</i></label>
-                          <i class="material-icons">close</i>
-                        </div>
-                      </form>
-                    </li>
-                    <li><a href="#">Order By</a></li>
-                </ul>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper black">
+                    <a href="#" class="brand-logo">Reddit Clone</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="">Submit Post</a>
+                        </li>
+                        <li>
+                            <form>
+                                <div class="input-field">
+                                    <input id="search" type="search" required>
+                                    <label for="search">
+                                        <i class="material-icons">search</i>
+                                    </label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </li>
+                        <li>
+                            <a href="#">Order By</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container main">
+            <div class="newPost">
+                <form action="" method="" name="newPost" ng-model="newPost">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" ng-model="title" required>
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" ng-model="author" required>
+                    <label for="img">Image:</label>
+                    <input type="text" name="img" ng-model="img" required>
+                    <label for="description">Description:</label>
+                    <textarea name="description" ng-model="description" required></textarea>
+                </form>
             </div>
-        </nav>
-      </div>
-      <div class="container">
-        <form action="" method="" name="newPost" ng-model="newPost">
-            <label for="title">Title:</label>
-            <input type="text" name="title" ng-model="title" required>
-            <label for="author">Author:</label>
-            <input type="text" name="author" ng-model="author" required>
-            <label for="img">Image:</label>
-            <input type="text" name="img" ng-model="img" required>
-            <label for="description">Description:</label>
-            <textarea name="description" ng-model="description" required></textarea>
-        </form>
-      </div>
-      <div class="">
-        {{title}}
-        {{author}}
-        {{img}}
-        {{description}}
-      </div>
+            <div class="posts">
+                <div class="col s12 m7">
+                    <div class="card horizontal">
+                        <div class="card-image"><img src="http://www.fillmurray.com/300/200"></div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p style="display: inline-block">
+                                    <strong>Title |</strong>
+                                </p>
+                                <a href="#">
+                                    <i class="fa fa-arrow-up fa-1x" aria-hidden="true"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-arrow-down fa-1x" aria-hidden="true"></i></a> |
+                                <p style="display: inline-block">
+                                  +6
+                                </p>
+                                <p>
+                                    Author
+                                </p>
+                                <hr>
+                                <p>Lorem ipsum dolor consectetur adipiscing elit. Pellentesque ut lacus at velit consequat sodales. Ut posuere neque in molestie gravida. Integer eu feugiat neque, elementum posuere purus. Nam vitae convallis ipsum. Maecenas a vulputate ipsum,
+                                    vestibulum lobortis enim. Sed consequat felis. Proin amet sollicitudin. Aliquam malesuada elementum risus, amet dictum tempor nec. Suspendisse massa, consequat at pellentesque , aliquam ullamcorper orci.</p>
+                            </div>
+                            <div class="card-action">
+                                <p style="display: inline-block">Last Wednesday, 4:45pm</p>
+                                <a href="#">Comments</a>
+                                <a href="#">Add Comment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
