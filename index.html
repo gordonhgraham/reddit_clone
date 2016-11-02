@@ -7,7 +7,7 @@
         <script src="https://use.fontawesome.com/7f5c5a8c99.js"></script>
         <title>Reddit Clone</title>
     </head>
-    <body>
+    <body ng-controller="PostsController">
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper black">
@@ -36,7 +36,7 @@
         </div>
         <div class="container main">
             <div class="newPost">
-                <form action="" method="" name="newPost" ng-model="newPost">
+                <form name="newPostForm" ng-submit="addPost()">
                     <label for="title">Title:</label>
                     <input type="text" name="title" ng-model="title" required>
                     <label for="author">Author:</label>
@@ -45,40 +45,64 @@
                     <input type="text" name="img" ng-model="img" required>
                     <label for="description">Description:</label>
                     <textarea name="description" ng-model="description" required></textarea>
+                    <input type="submit" value="Submit">
                 </form>
             </div>
-            <div class="posts">
-                <div class="col s12 m7">
-                    <div class="card horizontal">
-                        <div class="card-image"><img src="http://www.fillmurray.com/300/200"></div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p style="display: inline-block">
-                                    <strong>Title |</strong>
-                                </p>
-                                <a href="#">
-                                    <i class="fa fa-arrow-up fa-1x" aria-hidden="true"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-arrow-down fa-1x" aria-hidden="true"></i></a> |
-                                <p style="display: inline-block">
-                                  +6
-                                </p>
-                                <p>
-                                    Author
-                                </p>
-                                <hr>
-                                <p>Lorem ipsum dolor consectetur adipiscing elit. Pellentesque ut lacus at velit consequat sodales. Ut posuere neque in molestie gravida. Integer eu feugiat neque, elementum posuere purus. Nam vitae convallis ipsum. Maecenas a vulputate ipsum,
-                                    vestibulum lobortis enim. Sed consequat felis. Proin amet sollicitudin. Aliquam malesuada elementum risus, amet dictum tempor nec. Suspendisse massa, consequat at pellentesque , aliquam ullamcorper orci.</p>
-                            </div>
-                            <div class="card-action">
-                                <p style="display: inline-block">Last Wednesday, 4:45pm</p>
-                                <a href="#">Comments</a>
-                                <a href="#">Add Comment</a>
+            <div>
+                <ul>
+                    <li ng-repeat="post in posts | orderBy: 'votes' : true ">
+                        <div class="col s12 m7">
+                            <div class="card horizontal">
+                                <div class="card-image"><img ng-src="{{post.image}}"></div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <p style="display: inline-block">
+                                            <strong>{{post.title}}
+                                                |</strong>
+                                        </p>
+                                        <a ng-click="post.votes = post.votes+1">
+                                            <i class="fa fa-arrow-up fa-1x" aria-hidden="true"></i>
+                                        </a>
+                                        <a ng-click="post.votes = post.votes-1">
+                                            <i class="fa fa-arrow-down fa-1x" aria-hidden="true"></i>
+                                        </a>
+                                        <p style="display: inline-block">
+                                            {{post.votes}}
+                                        </p>
+                                        <p>
+                                            {{post.author}}
+                                        </p>
+                                        <hr>
+                                        <p>{{post.description}}</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <p style="display: inline-block">{{ post.date | date }}</p>
+                                        <a ng-click="isCommentsOpen = !isCommentsOpen">Comments</a>
+                                        <a ng-click="isAddCommentOpen = !isAddCommentOpen">Add Comment</a>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="comments" ng-show="isCommentsOpen">
+                            <div class="comment" ng-repeat="comment in post.comments">
+                                Author:
+                                {{comment.author}}
+                                Text:
+                                {{comment.text}}
+                            </div>
+                        </div>
+                        <div ng-show="isAddCommentOpen">
+                            <form name="" ng-submit="addComment()">
+                                <label for="author">Author:</label>
+                                <input type="text" name="author" ng-model="addCommentForm.author" required>
+                                <label for="text">Text:</label>
+                                <input type="text" name="text" ng-model="addCommentForm.text" required>
+                                <input type="submit" name="addComment" value="Add Comment">
+                            </form>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
         </div>
