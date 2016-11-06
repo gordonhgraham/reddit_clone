@@ -62,14 +62,18 @@ router.post(`/login`, (req, res, next) => {
     .catch(err => { return next(err) })
 })
 
-// // user logout ---maybe client side only?
-// router.post(`/logout`, (req, res, next) => {
-//
-// })
-//
+// user logout ---maybe client side only?
+router.get(`/logout`, (req, res, next) => {
+  req.session = null
+  res.send(`Logout success.`)
+})
+
 // // user edit
 // router.post(`/edituser`, (req, res, next) => {
+//   const user = req.body
 //
+//   knex(`users`)
+//     .where(`username`, user.username)
 // })
 //
 // // user delete ---maybe client side only? RESTful?
