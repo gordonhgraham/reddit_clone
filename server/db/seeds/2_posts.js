@@ -1,13 +1,12 @@
+'use strict'
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('posts').del()
     .then(function () {
       return Promise.all([
-        // Inserts seed entries
-        knex('table_name').insert({id: 1, colName: 'rowValue1'}),
-        knex('table_name').insert({id: 2, colName: 'rowValue2'}),
-        knex('table_name').insert({id: 3, colName: 'rowValue3'})
-      ]);
-    });
-};
+        knex('posts').insert({user_id: 1, title: `Post 1`, votes: 1, content: `This is the first post.`, photo_url: `https://source.unsplash.com/random/300x200`}),
+        knex('posts').insert({user_id: 1, title: `Post 2`, votes: 2, content: `This is the second post.`, photo_url: `https://source.unsplash.com/random/300x200`}),
+        knex('posts').insert({user_id: 1, title: `Post 3`, votes: 3, content: `This is the third post.`, photo_url: `https://source.unsplash.com/random/300x200`})
+      ])
+    })
+}

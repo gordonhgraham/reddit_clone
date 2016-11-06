@@ -1,13 +1,16 @@
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
+  return knex('comments').del()
+    .then(() => {
       return Promise.all([
-        // Inserts seed entries
-        knex('table_name').insert({id: 1, colName: 'rowValue1'}),
-        knex('table_name').insert({id: 2, colName: 'rowValue2'}),
-        knex('table_name').insert({id: 3, colName: 'rowValue3'})
-      ]);
-    });
-};
+        knex('comments ').insert({post_id: 1, user_id: 1, content: `This is the first comment on the first post.`}),
+        knex('comments ').insert({post_id: 1, user_id: 1, content: `This is the second comment on the first post.`}),
+        knex('comments ').insert({post_id: 1, user_id: 1, content: `This is the third comment on the first post.`}),
+        knex('comments ').insert({post_id: 2, user_id: 1, content: `This is the first comment on the second post.`}),
+        knex('comments ').insert({post_id: 2, user_id: 1, content: `This is the second comment on the second post.`}),
+        knex('comments ').insert({post_id: 2, user_id: 1, content: `This is the third comment on the second post.`}),
+        knex('comments ').insert({post_id: 3, user_id: 1, content: `This is the first comment on the third post.`}),
+        knex('comments ').insert({post_id: 3, user_id: 1, content: `This is the second comment on the third post.`})
+      ])
+    })
+}
