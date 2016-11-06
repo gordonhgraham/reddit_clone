@@ -1,10 +1,9 @@
 'use strict'
 
-const app = angular.module(`redditClone`, [])
-
-app.controller(`PostsController`, $scope => {
+const PostsController = ($scope) => {
   $scope.posts = [{
-    title: `1--Bill is the man`,
+    id: 1,
+    title: `Bill is the man`,
     author: `Bill Murray`,
     image: `http://www.fillmurray.com/500/500`,
     description: `Lorem ipsum dolor consectetur adipiscing elit. Pellentesque ut lacus at velit consequat sodales. Ut posuere neque in molestie gravida. Integer eu feugiat neque, elementum posuere purus. Nam vitae convallis ipsum. Maecenas a vulputate ipsum,
@@ -19,6 +18,7 @@ app.controller(`PostsController`, $scope => {
       text: `nope, not a great post`
     }]
   }, {
+    id: 2,
     title: `Bill is the man`,
     author: `Bill Murray`,
     image: `http://www.fillmurray.com/400/200`,
@@ -28,19 +28,31 @@ app.controller(`PostsController`, $scope => {
     date: `October 14, 2016`,
     comments: []
   }]
+}
+
+const NewPostController = ($scope) => {
+  $scope.newPost = {}
 
   $scope.addPost = () => {
     const newPost = {
-      title: newPostForm.title.value,
-      author: newPostForm.author.value,
-      image: newPostForm.img.value,
-      description: newPostForm.description.value
+      title: $scope.newPost.title,
+      author: $scope.newPost.author,
+      image: $scope.newPost.img,
+      description: $scope.newPost.description
     }
+    console.log(newPost)
     $scope.posts.push(newPost)
-
+    console.log(posts)
     return
   }
 
+}
+
+const CommentsController = ($scope) => {
+
+}
+
+const NewCommentController = ($scope) => {
   $scope.addCommentForm = {}
 
   $scope.addComment = () => {
@@ -51,8 +63,9 @@ app.controller(`PostsController`, $scope => {
 
     const selectedPost = $index
     console.log(selectedPost)
-  // $scope.posts[$index].comments.push(newComment)
+      // $scope.posts[$index].comments.push(newComment)
 
     return
   }
-})
+
+}
