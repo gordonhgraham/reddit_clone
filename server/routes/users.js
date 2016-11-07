@@ -8,26 +8,24 @@ const bcrypt = require(`bcrypt`)
 // user signup
 router.post(`/signup`, (req, res, next) => {
   const newUser = req.body
+  console.log(newUser);
   const hashed_pass = bcrypt.hashSync(newUser.password, 12)
 
   // check if username is unique, if so insert new users
   knex(`users`)
     .where(`username`, newUser.username)
-    .first()
     .then(data => {
-      if (!data) {
+      if (data.length == 0) {
         knex(`users`)
           .insert({
             username: newUser.username,
             hashed_pass: hashed_pass
-          })
-          .returning(`*`)
-          .first()
-          .then(data => {
-            const user = data
+          }, `*`)
+          .then(addedUser => {
+            const user = addedUser
             delete user.hashed_pass
             req.session.user = user
-            console.log(`req.session`, req.session.user)
+            console.log(`addedUser from callback`, addedUser)
             res.send(`User signup success.`)
           })
           .catch(err => { return next(err) })
