@@ -19,12 +19,10 @@ router.get('/', (req, res, next) => {
 
 // create post
 router.post('/', (req, res, next) => {
-  console.log(req.session);
-  if (req.session) {
-    console.log(`req.session is true`)
+  if (req.session.user) {
     knex(`posts`)
       .insert({
-        user_id: req.session.id,
+        user_id: req.session.user.id,
         title: req.body.title,
         votes: req.body.votes,
         content: req.body.content,
@@ -35,29 +33,50 @@ router.post('/', (req, res, next) => {
       })
       .catch(err => { return next(err) })
   } else {
-    console.log(`Unauthorized`);
     res.send(`Unauthorized.`)
   }
 })
 
 // update post
 router.patch('/', (req, res, next) => {
+  const userId = req.session.user.id
   knex(`posts`)
     .where(`id`, req.body.id)
-    .update(req.body, `*`)
     .then(data => {
-      res.send(data)
+      const authorId = data[0].user_id
+
+      if (userId == authorId) {
+        knex(`posts`)
+          .where(`id`, req.body.id)
+          .update(req.body, '*')
+          .then(data => {
+            res.send(data[0])
+          })
+      } else {
+        res.send(`Unauthorized.`)
+      }
     })
     .catch(err => { return next(err) })
 })
 
 // delete post
 router.delete('/', (req, res, next) => {
+  const userId = req.session.user.id
   knex(`posts`)
     .where(`id`, req.body.id)
-    .del()
-    .then(() => {
-      res.send(`Post Deleted.`)
+    .then(data => {
+      const authorId = data[0].user_id
+
+      if (userId == authorId) {
+        knex(`posts`)
+          .where(`id`, req.body.id)
+          .del()
+          .then(() => {
+            res.send(`Post Deleted.`)
+          })
+      } else {
+        res.send(`Unauthorized.`)
+      }
     })
     .catch(err => { return next(err) })
 })
