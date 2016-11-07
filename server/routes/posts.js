@@ -17,6 +17,22 @@ router.get('/', (req, res, next) => {
     .catch(err => { return next(err) })
 })
 
+// read post
+router.get(`/:id`, (req, res, next) => {
+  const postId = req.params.id
+
+  knex(`posts`)
+    .where(`id`, postId)
+    .innerJoin(`users`, `posts.user_id`, `users.id`)
+    .select(`users.username`, `users.id`, `posts.id`,`posts.user_id`,
+      `posts.title`, `posts.votes`, `posts.content`, `posts.photo_url`,
+      `posts.created_at`)
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => { return next(err) })
+})
+
 // create post
 router.post('/', (req, res, next) => {
   if (req.session.user) {

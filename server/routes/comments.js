@@ -5,7 +5,7 @@ const router = express.Router()
 
 // list comments
 router.get('/', (req, res, next) => {
-
+  
 })
 
 // create comment
