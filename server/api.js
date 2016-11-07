@@ -28,6 +28,11 @@ app.use('/users', users)
 app.use('/posts', posts)
 app.use('/comments', comments)
 
+// app.use from craig's pirates code along--what does the express.static do?
+// app.use('/javascripts', express.static(__dirname + "/../client/javascripts"));
+// app.use('/stylesheets', express.static(__dirname + "/../client/stylesheets"));
+// app.use('/views', express.static(__dirname + "/../client/views"));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error('Not Found')
