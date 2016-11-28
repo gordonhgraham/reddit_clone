@@ -1,33 +1,8 @@
-// (function() {
-//
-//   angular
-//     .module('piratesApp', ['ngRoute'])
-//     .config(config);
-//
-//   function config($routeProvider, $locationProvider) {
-//     $routeProvider
-//       .when('/pirates', {
-//         templateUrl: '../views/pirates/index.html',
-//         controller: 'PiratesController',
-//         controllerAs: 'vm',
-//         resolve: {
-//           pirates: getAllPirates
-//         }
-//       })
-//       .when('/pirates/new', {
-//         templateUrl: '../views/pirates/new.html',
-//         controller: 'NewPirateController',
-//         controllerAs: 'vm'
-//       })
-//       .otherwise({redirectTo: '/pirates'})
-//     $locationProvider.html5Mode(true);
-//   }
-//
-//   function getAllPirates(PirateService) {
-//     return PirateService.getPirates();
-//   }
-//
-//   config.$inject = ['$routeProvider', '$locationProvider'];
-//   getAllPirates.$inject = ['PirateService'];
-//
-// })()
+angular.module('rereddit', ['ngResource'])
+  .service(`DataService`, DataService)
+  .controller(`UsersController`, UsersController)
+  .controller(`PostsController`, PostsController)
+  .controller(`CommentsController`, CommentsController)
+  .config([`$resourceProvider`, function($resourceProvider) {
+     $resourceProvider.defaults.stripTrailingSlashes = false
+  }])

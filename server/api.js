@@ -17,7 +17,7 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../client')))
 
 app.use(cookieSession({
   name: `rereddit`,
@@ -26,12 +26,17 @@ app.use(cookieSession({
 
 app.use('/users', users)
 app.use('/posts', posts)
-app.use('/comments', comments)
+// app.use('/comments', comments)
+app.use('/posts/:pid/comments', comments)
 
 // app.use from craig's pirates code along--what does the express.static do?
 // app.use('/javascripts', express.static(__dirname + "/../client/javascripts"));
 // app.use('/stylesheets', express.static(__dirname + "/../client/stylesheets"));
 // app.use('/views', express.static(__dirname + "/../client/views"));
+
+app.get(`*`, (req, res) => {
+  res.sendFile(path.join(__dirname, `../client/views`, `index.html`))
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,13 @@
+<div ng-controller="NewPostController" ng-show="isSubmitOpen">
+    <form name="newPostf" ng-submit="addPost()">
+        <label for="title">Title:</label>
+        <input type="text" name="title" ng-model="newPost.title" required>
+        <label for="author">Author:</label>
+        <input type="text" name="author" ng-model="newPost.author" required>
+        <label for="img">Image:</label>
+        <input type="text" name="img" ng-model="newPost.img" required>
+        <label for="description">Description:</label>
+        <textarea name="description" ng-model="newPost.description" required></textarea>
+        <input type="submit" value="Submit">
+    </form>
+</div>
