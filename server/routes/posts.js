@@ -1,14 +1,14 @@
 'use strict'
 
-const express = require('express')
+const express = require(`express`)
 const router = express.Router()
 const knex = require(`../db/knex.js`)
 
 // list posts
-router.get('/', (req, res, next) => {
+router.get(`/`, (req, res, next) => {
   knex(`posts`)
     .innerJoin(`users`, `posts.user_id`, `users.id`)
-    .select(`users.username`, `users.id`, `posts.id`,`posts.user_id`,
+    .select(`users.username`, `users.id`, `posts.id`, `posts.user_id`,
       `posts.title`, `posts.votes`, `posts.content`, `posts.photo_url`,
       `posts.created_at`)
     .then(data => {
@@ -24,7 +24,7 @@ router.get(`/:id`, (req, res, next) => {
   knex(`posts`)
     .where(`id`, postId)
     .innerJoin(`users`, `posts.user_id`, `users.id`)
-    .select(`users.username`, `users.id`, `posts.id`,`posts.user_id`,
+    .select(`users.username`, `users.id`, `posts.id`, `posts.user_id`,
       `posts.title`, `posts.votes`, `posts.content`, `posts.photo_url`,
       `posts.created_at`)
     .then(data => {
@@ -34,7 +34,7 @@ router.get(`/:id`, (req, res, next) => {
 })
 
 // create post
-router.post('/', (req, res, next) => {
+router.post(`/`, (req, res, next) => {
   if (req.session.user) {
     knex(`posts`)
       .insert({
@@ -54,17 +54,18 @@ router.post('/', (req, res, next) => {
 })
 
 // update post
-router.patch('/', (req, res, next) => {
+router.patch(`/`, (req, res, next) => {
   const userId = req.session.user.id
+
   knex(`posts`)
     .where(`id`, req.body.id)
     .then(data => {
       const authorId = data[0].user_id
 
-      if (userId == authorId) {
+      if (userId === authorId) {
         knex(`posts`)
           .where(`id`, req.body.id)
-          .update(req.body, '*')
+          .update(req.body, `*`)
           .then(data => {
             res.send(data[0])
           })
@@ -76,14 +77,15 @@ router.patch('/', (req, res, next) => {
 })
 
 // delete post
-router.delete('/', (req, res, next) => {
+router.delete(`/`, (req, res, next) => {
   const userId = req.session.user.id
+
   knex(`posts`)
     .where(`id`, req.body.id)
     .then(data => {
       const authorId = data[0].user_id
 
-      if (userId == authorId) {
+      if (userId === authorId) {
         knex(`posts`)
           .where(`id`, req.body.id)
           .del()

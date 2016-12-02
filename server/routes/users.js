@@ -1,6 +1,6 @@
 'use strict'
 
-const express = require('express')
+const express = require(`express`)
 const router = express.Router()
 const knex = require(`../db/knex.js`)
 const bcrypt = require(`bcrypt`)
@@ -8,14 +8,13 @@ const bcrypt = require(`bcrypt`)
 // user signup
 router.post(`/signup`, (req, res, next) => {
   const newUser = req.body
-  console.log(newUser);
   const hashed_pass = bcrypt.hashSync(newUser.password, 12)
 
   // check if username is unique, if so insert new users
   knex(`users`)
     .where(`username`, newUser.username)
     .then(data => {
-      if (data.length == 0) {
+      if (data.length === 0) {
         knex(`users`)
           .insert({
             username: newUser.username,
@@ -23,14 +22,14 @@ router.post(`/signup`, (req, res, next) => {
           }, `*`)
           .then(addedUser => {
             const user = addedUser
+
             delete user.hashed_pass
             req.session.user = user
-            console.log(`addedUser from callback`, addedUser)
+
             res.send(`User signup success.`)
           })
           .catch(err => { return next(err) })
-      }
-      else {
+      } else {
         res.send(`Username already exists, pick a new username.`)
       }
     })
@@ -39,6 +38,7 @@ router.post(`/signup`, (req, res, next) => {
 // user login
 router.post(`/login`, (req, res, next) => {
   const user = req.body
+
   knex(`users`)
     .where(`username`, user.username)
     .first()
@@ -47,12 +47,12 @@ router.post(`/login`, (req, res, next) => {
 
       if (auth) {
         const user = data
+
         delete user.hashed_pass
         req.session.user = user
         console.log(`login success`)
         res.send(`Login success.`)
-      }
-      else {
+      } else {
         console.log(`login unsuccessful`)
         res.send(`Incorrect Username or Password`)
       }
