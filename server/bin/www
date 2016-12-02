@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../api');
+var app = require('../api.js');
 var debug = require('debug')('reddit_clone:server');
 var http = require('http');
 
