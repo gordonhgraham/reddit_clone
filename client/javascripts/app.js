@@ -1,8 +1,10 @@
+'use strict'
+
 angular.module('rereddit', ['ngResource'])
-  .service(`DataService`, DataService)
+  .service(`Da]taService`, DataService)
   .controller(`UsersController`, UsersController)
   .controller(`PostsController`, PostsController)
-  // .controller(`CommentsController`, CommentsController)
+  .controller(`CommentsController`, CommentsController)
   .config([`$resourceProvider`, function($resourceProvider) {
-     $resourceProvider.defaults.stripTrailingSlashes = false
+    $resourceProvider.defaults.stripTrailingSlashes = false
   }])

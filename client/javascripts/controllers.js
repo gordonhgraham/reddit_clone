@@ -1,19 +1,23 @@
-const UsersController = function($scope, DataService){
+'use strict'
+
+const UsersController = function($scope, DataService) {
   $scope.vm = {}
+
   // $scope.users.get = () => {
   //   res.send(data)
   // }
 }
 
-const PostsController = function($scope, DataService){
+const PostsController = function($scope, DataService) {
   $scope.vm = {}
   $scope.vm.posts = DataService.posts.query()
-  }
+}
 
-// const CommentsController = function($scope, DataService){
-//   $scope.vm = {}
-// }
+const CommentsController = function($scope, DataService) {
+  $scope.vm = {}
+  $scope.vm.comments = DataService.comments.get()
+}
 
-// UsersController.$inject = [`$scope`, `DataService`]
-// PostsController.$inject = [`$scope`, `DataService`]
-// CommentsController.$inject = [`$scope`, `DataService`]
+UsersController.$inject = [`$scope`, `DataService`]
+PostsController.$inject = [`$scope`, `DataService`]
+CommentsController.$inject = [`$scope`, `DataService`]

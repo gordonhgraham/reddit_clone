@@ -7,12 +7,12 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Reddit Clone</title>
     </head>
-    <body ng-controller="PostsController">
+    <body>
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper grey">
                     <a href="#" class="brand-logo">Reddit Clone</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
                             <a ng-click="isSubmitOpen = !isSubmitOpen">Submit Post</a>
                         </li>
@@ -22,7 +22,7 @@
                         <li>
                             <a href="#">Order By</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </nav>
         </div>
@@ -64,15 +64,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="comments" ng-show="isCommentsOpen">
-                                <div class="comment" ng-repeat="comment in post.comments">
+                            <div class="comments" ng-controller="CommentsController">
+                                <div class="comment" ng-repeat="comment in comments">
                                     Author:
-                                    {{comment.author}}
+                                    {{comment.username}}
                                     Text:
-                                    {{comment.text}}
+                                    {{comment.content}}
                                 </div>
                             </div>
-                            <div ng-show="isAddCommentOpen">
+                            <!-- <div ng-show="isAddCommentOpen">
                                 <form name="" ng-submit="addComment()">
                                     <label for="author">Author:</label>
                                     <input type="text" name="author" ng-model="addCommentForm.author" required>
@@ -80,7 +80,7 @@
                                     <input type="text" name="text" ng-model="addCommentForm.text" required>
                                     <input type="submit" name="addComment" value="Add Comment">
                                 </form>
-                            </div>
+                            </div> -->
                         </li>
                     </div>
                 </ul>
