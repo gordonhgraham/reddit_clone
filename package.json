@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node ./server/bin/www",
     "knex":"knex",
-    "heroku-postbuild": "knex migrate:latest --knexfile ./server/db/knexfile.js",
-    "nodemon":"nodemon server.js"
+    "heroku-postbuild": "knex migrate:latest --knexfile ./server/db/knexfile.js"
   },
   "engines": {
     "node": "v6.8.0"
