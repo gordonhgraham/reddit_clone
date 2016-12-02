@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('rereddit', ['ngResource'])
-  .service(`Da]taService`, DataService)
+  .service(`DataService`, DataService)
   .controller(`UsersController`, UsersController)
   .controller(`PostsController`, PostsController)
   .controller(`CommentsController`, CommentsController)
