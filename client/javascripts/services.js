@@ -6,7 +6,7 @@ const DataService = function($resource, $http) {
   const login = user => { return $http.post(``, user) }
   const logout = () => { return $http.delete(``) }
 
-  const posts = $resource(`/api/posts/:pid`, { pid: `@pid` }, { update: { method: `PATCH` }})
+  const posts = $resource(`/posts/:pid`, { pid: `@pid` }, { update: { method: `PATCH` }})
   const comments = $resource(`/posts/:pid/comments/:cid`, { pid: `@pid`, cid: `@cid` }, { update: { method: `PATCH` }})
 
   return { users, signup, login, logout, posts, comments }
