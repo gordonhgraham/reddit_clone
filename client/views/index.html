@@ -5,6 +5,16 @@
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular-resource.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+        <script src="../javascripts/app.js"></script>
+        <script src="../javascripts/appConfig.js"></script>
+        <script src="../javascripts/services.js" charset="utf-8"></script>
+        <script src="../javascripts/controllers.js" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <script src="https://use.fontawesome.com/7f5c5a8c99.js"></script>
         <title>Reddit Clone</title>
     </head>
     <body>
@@ -27,72 +37,10 @@
             </nav>
         </div>
         <div class="container main">
-            <div>
-                <div ng-controller="PostsController">
-                    <ul>
-                        <li ng-repeat="post in vm.posts | orderBy: 'votes' : true ">
-                            <div class="col s12 m7">
-                                <div class="card horizontal">
-                                    <div class="card-image"><img ng-src="{{post.photo_url}}"></div>
-                                    <div class="card-stacked">
-                                        <div class="card-content">
-                                            <p style="display: inline-block">
-                                                <strong>{{post.title}}
-                                                    |</strong>
-                                            </p>
-                                            <a ng-click="post.votes = post.votes+1">
-                                                <i class="fa fa-arrow-up fa-1x" aria-hidden="true"></i>
-                                            </a>
-                                            <a ng-click="post.votes = post.votes-1">
-                                                <i class="fa fa-arrow-down fa-1x" aria-hidden="true"></i>
-                                            </a>
-                                            <p style="display: inline-block">
-                                                {{post.votes}}
-                                            </p>
-                                            <p>
-                                                {{post.username}}
-                                            </p>
-                                            <hr>
-                                            <p>{{post.content}}</p>
-                                        </div>
-                                        <div class="card-action">
-                                            <p style="display: inline-block">{{ post.date | date }}</p>
-                                            <a ng-click="isCommentsOpen = !isCommentsOpen">Comments</a>
-                                            <a ng-click="isAddCommentOpen = !isAddCommentOpen">Add Comment</a>
-                                        </div>
+          <div ui-view>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comments" ng-controller="CommentsController">
-                                <div class="comment" ng-repeat="comment in comments">
-                                    Author:
-                                    {{comment.username}}
-                                    Text:
-                                    {{comment.content}}
-                                </div>
-                            </div>
-                            <!-- <div ng-show="isAddCommentOpen">
-                                <form name="" ng-submit="addComment()">
-                                    <label for="author">Author:</label>
-                                    <input type="text" name="author" ng-model="addCommentForm.author" required>
-                                    <label for="text">Text:</label>
-                                    <input type="text" name="text" ng-model="addCommentForm.text" required>
-                                    <input type="submit" name="addComment" value="Add Comment">
-                                </form>
-                            </div> -->
-                        </li>
-                    </div>
-                </ul>
-            </div>
+          </div>
         </div>
-        <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
-        <script src="https://code.angularjs.org/1.5.8/angular-resource.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-        <script src="../javascripts/services.js" charset="utf-8"></script>
-        <script src="../javascripts/controllers.js" charset="utf-8"></script>
-        <script src="../javascripts/app.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-        <script src="https://use.fontawesome.com/7f5c5a8c99.js"></script>
+
     </body>
 </html>

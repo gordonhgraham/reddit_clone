@@ -4,15 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "knex":"knex",
+    "knex": "knex",
     "heroku-postbuild": "knex migrate:latest --knexfile ./server/db/knexfile.js"
-
   },
   "engines": {
     "node": "v6.8.0"
   },
   "dependencies": {
-    "angular-ui-router": "^0.3.2",
     "bcrypt": "^0.8.7",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",

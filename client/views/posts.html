@@ -1,0 +1,56 @@
+<div>
+    <ul>
+        <li ng-repeat="post in vm.posts | orderBy: 'votes' : true ">
+            <div class="col s12 m7">
+                <div class="card horizontal">
+                    <div class="card-image"><img ng-src="{{post.photo_url}}"></div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p style="display: inline-block">
+                                <strong>{{post.title}}
+                                    |</strong>
+                            </p>
+                            <a ng-click="post.votes = post.votes+1">
+                                <i class="fa fa-arrow-up fa-1x" aria-hidden="true"></i>
+                            </a>
+                            <a ng-click="post.votes = post.votes-1">
+                                <i class="fa fa-arrow-down fa-1x" aria-hidden="true"></i>
+                            </a>
+                            <p style="display: inline-block">
+                                {{post.votes}}
+                            </p>
+                            <p>
+                                {{post.username}}
+                            </p>
+                            <hr>
+                            <p>{{post.content}}</p>
+                        </div>
+                        <div class="card-action">
+                            <p style="display: inline-block">{{ post.date | date }}</p>
+                            <a ng-click="isCommentsOpen = !isCommentsOpen">Comments</a>
+                            <a ng-click="isAddCommentOpen = !isAddCommentOpen">Add Comment</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="comments" ng-controller="CommentsController">
+                <div class="comment" ng-repeat="comment in comments">
+                    Author:
+                    {{comment.username}}
+                    Text:
+                    {{comment.content}}
+                </div>
+            </div>
+            <!-- <div ng-show="isAddCommentOpen">
+                    <form name="" ng-submit="addComment()">
+                        <label for="author">Author:</label>
+                        <input type="text" name="author" ng-model="addCommentForm.author" required>
+                        <label for="text">Text:</label>
+                        <input type="text" name="text" ng-model="addCommentForm.text" required>
+                        <input type="submit" name="addComment" value="Add Comment">
+                    </form>
+                </div> -->
+        </li>
+    </ul>
+</div>
